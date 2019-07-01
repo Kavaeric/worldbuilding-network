@@ -1,0 +1,35 @@
+/* style.css */
+
+/* Colour palette! */
+:root {
+    --cl-maroon: #392934;
+    --cl-red:    #fd6748;
+    --cl-yellow: #ffb856;
+    --cl-pale:   #ffedd4;
+    --cl-blue:   #4e5f8c;
+    --cl-cyan:   #209ede;
+    --cl-char:   #313131;
+    --cl-grey:   #616161;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+
+    font-family: "IBM Plex Sans", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: var(--cl-char);
+}
+/* Design for mobile first, then use media queries to scale for laptops and desktops.
+This ensures that the site is best optimised for mobile devices, which are often slower. */
+@media only screen and (min-width: 640px) {
+    body {
+        font-size: 16px;
+    }
+}
+@media only screen and (min-width: 960px) {
+    body {
+        font-size: 18px
+    };
+}
