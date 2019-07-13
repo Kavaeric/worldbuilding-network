@@ -27,25 +27,14 @@
     z-index: 10;
 }
 
-#NavLogo:hover {
-    background-image: url(img/navbar_shield_red.png);
-}
-#NavLogo::after {
-    content: "";
-    display: block;
-    visibility: hidden;
-    background-image: url(img/navbar_shield_red.png); /* For preloading purposes */
-}
-
 /* Hide/show menu button - only visible on mobile */
 #MenuButton {
     display: block;
-    height: 3em;
+    height: 2em;
     width: 2em;
-    padding: 0 .5em;
 
-    font-weight: bold;
-    line-height: 3em;
+    font-size: 1.5em;
+    line-height: 1.95em; /* Unicode hamburger menu symbol isn't quite centred */
     text-align: center;
     text-decoration: none;
 
@@ -63,19 +52,28 @@ and list the other menu options below. */
 
 /* Navbar menu items */
 #NavLinks a {
-    align-self: center;
     height: 2.5em;
     padding: 0 .5em;
 
     font-weight: bold;
     line-height: 2.5em;
+    text-align: center;
     text-decoration: none;
 
     color: #fff;
 }
 
+/* Double-span the text buttons */
 #NavLinks a.text {
     grid-column-end: span 2;
+}
+
+#NavLinks a.icon {
+    width: 4em;
+    padding: 0;
+    background-size: 1.5em;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 /* On mobile, the buttons will hide and show depending on whether .hidemenu or .showmenu
@@ -85,15 +83,6 @@ is applied to the #NavLinks element */
 }
 #NavLinks.showmenu a {
     display: block;
-    text-align: center;
-}
-
-#NavLinks a.icon {
-    width: 4em;
-    padding: 0;
-    background-size: 1.5em;
-    background-position: center;
-    background-repeat: no-repeat;
 }
 
 /* Tablet and larger */
@@ -110,6 +99,17 @@ is applied to the #NavLinks element */
         width: 4.5em;
     }
 
+    /* Enable Logo hover effects */
+    #NavLogo:hover {
+        background-image: url(img/navbar_shield_red.png);
+    }
+    #NavLogo::after {
+        content: "";
+        display: block;
+        visibility: hidden;
+        background-image: url(img/navbar_shield_red.png); /* For preloading purposes */
+    }
+
     /* Everything gets shown at once - return to a horizontal flexbox */
     #NavLinks {
         display: flex;
@@ -117,6 +117,7 @@ is applied to the #NavLinks element */
         margin: 0;
     }
 
+    /* Resize the links to fit the navbar, which is 3em tall */
     #NavLinks a {
         height: 3em;
         line-height: 3em;
@@ -133,10 +134,9 @@ is applied to the #NavLinks element */
     /* Override anything .hidemenu and .showmenu is doing */
     #NavLinks.hidemenu a,
     #NavLinks.showmenu a {
-        display: initial;
+        display: block;
     }
 
-    /* Hide show/hide menu button */
     #MenuButton {
         display: none;
     }
