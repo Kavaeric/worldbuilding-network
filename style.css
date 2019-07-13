@@ -52,7 +52,6 @@ h1 {
 h2 {
     margin-top: 2.5em;
     margin-bottom: 0em;
-    padding-left: 1em;
     border-bottom: 2px solid var(--cl-b10);
 }
 
@@ -187,7 +186,6 @@ p.notice.tip {
 div.team {
     width: 100%;
     box-sizing: border-box;
-    margin: .5em 0;
     padding: .5em;
     
     display: grid;
@@ -197,10 +195,12 @@ div.team {
     "image tagline"
     "image links";
     grid-column-gap: 1em;
-    
-    border: .1em solid var(--cl-b20);
-    border-left-width: .4em;
+    border-bottom-width: 0;
     background: var(--cl-b5);
+}
+
+div.team:last-of-type {
+    margin-bottom: .5em;
 }
 
 div.team .profileImg {
@@ -237,7 +237,7 @@ div.team .links .link {
     text-decoration: none;
 
     color: #fff;
-    background: rgba(0, 0, 0, .4);
+    background: rgba(0, 0, 0, .5);
     border-radius: .2em;
 }
 
@@ -256,8 +256,6 @@ div.team .links .link img {
 div.team.developer {
     grid-template-columns: 4em auto;
     grid-template-rows: 2.5em 1.5em;
-    border-color: var(--cl-yellow);
-    background: var(--cl-pale);
 }
 
 div.team.developer .tagline {

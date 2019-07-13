@@ -2,29 +2,31 @@
 
 #NavBar {
     width: 100%;
-    height: 3em;
+    min-height: 3em;
 
     display: flex;
-    justify-content: center;
+    justify-content: left;
 
     color: #fff;
     background: var(--cl-char);
+    z-index: 9;
+}
+#NavBar * {
+    z-index: inherit;
 }
 
 #NavLogo {
-    grid-area: logo;
-    height: 4em;
-    width: 4em;
-    margin-top: .3em;
-    
     display: block;
+    height: 3em;
+    width: 3em;
     
     background-image: url(img/navbar_shield_yellow.png);
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    z-index: 9;
+    z-index: 10;
 }
+
 #NavLogo:hover {
     background-image: url(img/navbar_shield_red.png);
 }
@@ -35,32 +37,109 @@
     background-image: url(img/navbar_shield_red.png); /* For preloading purposes */
 }
 
-.NavLinks {
-    display: flex;
+/* Hide/show menu button - only visible on mobile */
+#MenuButton {
+    display: block;
     height: 3em;
-}
-
-/* Navbar menu items */
-.NavLinks a {
-    align-self: center;
-    height: 3em;
+    width: 2em;
     padding: 0 .5em;
 
     font-weight: bold;
     line-height: 3em;
+    text-align: center;
     text-decoration: none;
 
     color: #fff;
 }
-.NavLinks a.icon {
-    width: 3em;
+
+/* On mobile, we'll have a nice grid layout on the menu. We can line the site icons along the top,
+and list the other menu options below. */
+#NavLinks {
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 4em);
+    grid-template-rows: 3em repeat(auto-fit, 2.5em);
+}
+
+/* Navbar menu items */
+#NavLinks a {
+    align-self: center;
+    height: 2.5em;
+    padding: 0 .5em;
+
+    font-weight: bold;
+    line-height: 2.5em;
+    text-decoration: none;
+
+    color: #fff;
+}
+
+#NavLinks a.text {
+    grid-column-end: span 2;
+}
+
+/* On mobile, the buttons will hide and show depending on whether .hidemenu or .showmenu
+is applied to the #NavLinks element */
+#NavLinks.hidemenu a {
+    display: none;
+}
+#NavLinks.showmenu a {
+    display: block;
+    text-align: center;
+}
+
+#NavLinks a.icon {
+    width: 4em;
     padding: 0;
     background-size: 1.5em;
     background-position: center;
     background-repeat: no-repeat;
 }
-.NavLinks a:hover {
-    background-color: var(--cl-w10);
+
+/* Tablet and larger */
+@media screen and (min-width: 600px) {
+    /* Reset the NavBar positioning to the middle */
+    #NavBar {
+        height: 3em;
+        justify-content: center;
+    }
+
+    /* Shield will stick out from the navbar */
+    #NavLogo {
+        height: 4.5em;
+        width: 4.5em;
+    }
+
+    /* Everything gets shown at once - return to a horizontal flexbox */
+    #NavLinks {
+        display: flex;
+        height: 3em;
+        margin: 0;
+    }
+
+    #NavLinks a {
+        height: 3em;
+        line-height: 3em;
+    }
+
+    #NavLinks a.icon {
+        width: 3em;
+    }
+
+    #NavLinks a:hover {
+        background-color: var(--cl-w10);
+    }
+
+    /* Override anything .hidemenu and .showmenu is doing */
+    #NavLinks.hidemenu a,
+    #NavLinks.showmenu a {
+        display: initial;
+    }
+
+    /* Hide show/hide menu button */
+    #MenuButton {
+        display: none;
+    }
 }
 
 #Reddit {
