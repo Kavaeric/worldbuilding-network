@@ -7,12 +7,27 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ page.title }} - Worldbuilding</title>
 
-    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/style.css">
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/style.css">
 </head>
 
 <body>
-    <h1>{{ page.title }}</h1>
-    {{ content }}
+    {% include navbar.html %}
+    <div id="Layout">
+        <!-- Pick a good sidebar image! -->
+        {% if page.category contains "Kaztron" %}
+        <div id="SidebarImage" style="background-image: url('{{ site.baseurl }}/img/kaztron.png');"></div>
+        {% else %}
+        <div id="SidebarImage" style="background-image: url('{{ site.baseurl }}/img/{{ page.category }}.png');"></div>
+        {% endif %}
+        <div id="Sidebar">
+            {% include sidebar.html %}
+        </div>
+        <div id="Content">
+            <h1>{{ page.title }}</h1>
+            {{ content }}
+        </div>
+    </div>
 </body>
 </html>

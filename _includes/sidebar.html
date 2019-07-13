@@ -1,0 +1,46 @@
+<!-- Note down the category of the page you are on 
+     This allows the sidebar include to generate different sidebars depending on the page's category -->
+{% assign currentCat = page.category %}
+
+<!-- Create an array of all the subcategories, and remove duplicates. We'll loop through all the pages,
+     list them all out, then seperate them with a space -->
+{% capture pages_subcategories %}
+    {% for page in site.pages %}
+        {% if page.subcategory != null and page.category == currentCat %}
+            {{ page.subcategory }} 
+        {% endif %}
+    {% endfor %}
+{% endcapture %}
+<!-- The Split filter will allow us to split the string into an array. An extra space will be generated
+     at the end, so we use rstrip to remove it. -->
+<!-- The Uniq filter will remove any duplicates -->
+{% assign subcategory_array = pages_subcategories | rstrip | split: " " | uniq %}
+
+<!-- Generate the navigation list of all the pages that share the same category as the current page.
+     Also iterate through all the subcategories available and create headers for them -->
+<ul>
+    {% for article in site.pages %}
+    {% if article.subcategory == null and article.category == currentCat %}
+        {% if article.url == page.url %}
+    <li><a href="{{ site.baseurl }}{{ article.url }}" class="firstlevel current">{{ article.title }}</a></li>
+        {% else %}
+    <li><a href="{{ site.baseurl }}{{ article.url }}" class="firstlevel">{{ article.title }}</a></li>
+        {% endif%}
+    {% endif %}
+    {% endfor %}
+    {% for subcategory in subcategory_array %}
+        <li><div class="subcatHeader">{{ subcategory }}</div>
+            <ul>
+                {% for article in site.pages %}
+                {% if article.subcategory == subcategory and article.category == currentCat %}
+                    {% if article.url == page.url %}
+                <li><a href="{{ site.baseurl }}{{ article.url }}" class="secondlevel current">{{ article.title }}</a></li>
+                    {% else %}
+                <li><a href="{{ site.baseurl }}{{ article.url }}" class="secondlevel">{{ article.title }}</a></li>
+                    {% endif %}
+                {% endif %}
+                {% endfor %}
+            </ul>
+        </li>
+    {% endfor %}
+</ul>

@@ -1,0 +1,77 @@
+/* navbar.css */
+
+#NavBar {
+    width: 100%;
+    height: 3em;
+
+    display: flex;
+    justify-content: center;
+
+    color: #fff;
+    background: var(--cl-char);
+}
+
+#NavLogo {
+    grid-area: logo;
+    height: 4em;
+    width: 4em;
+    margin-top: .3em;
+    
+    display: block;
+    
+    background-image: url(img/navbar_shield_yellow.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 9;
+}
+#NavLogo:hover {
+    background-image: url(img/navbar_shield_red.png);
+}
+#NavLogo::after {
+    content: "";
+    display: block;
+    visibility: hidden;
+    background-image: url(img/navbar_shield_red.png); /* For preloading purposes */
+}
+
+.NavLinks {
+    display: flex;
+    height: 3em;
+}
+
+/* Navbar menu items */
+.NavLinks a {
+    align-self: center;
+    height: 3em;
+    padding: 0 .5em;
+
+    font-weight: bold;
+    line-height: 3em;
+    text-decoration: none;
+
+    color: #fff;
+}
+.NavLinks a.icon {
+    width: 3em;
+    padding: 0;
+    background-size: 1.5em;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.NavLinks a:hover {
+    background-color: var(--cl-w10);
+}
+
+#Reddit {
+    background-image: url(img/reddit.svg);
+}
+#Discord {
+    background-image: url(img/discord.svg);
+}
+#IRC {
+    background-image: url(img/irc.svg);
+}
+#GitHub {
+    background-image: url(img/github.svg);
+}

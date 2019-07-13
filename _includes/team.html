@@ -1,0 +1,29 @@
+<div class="team{% if include.dev == true %} developer{% endif %}">
+    {% if include.image != null %}
+    <img class="profileImg" src="{{ site.baseurl }}img/{{ include.image }}.jpg" alt="{{ include.name }}">
+    {% else %}
+    <img class="profileImg" src="{{ site.baseurl }}/img/placeholder_shield.jpg" alt="{{ include.name }}">
+    {% endif %}
+    <div class="tagline">
+        <span>{{ include.name }}</span>: {{ include.role }}
+    </div>
+    <div class="links">
+        {% if include.github != null %}
+        <a href="https://github.com/{{ include.github | downcase }}" class="link">
+            <img src="{{ site.baseurl}}/img/github.svg" alt="GitHub">{{ include.github }}
+        </a>
+        {% endif %}
+
+        {% if include.reddit != null %}
+        <a href="https://reddit.com/u/{{ include.reddit | downcase }}" class="link">
+            <img src="{{ site.baseurl}}/img/reddit.svg" alt="Reddit">{{ include.reddit }}
+        </a>
+        {% endif %}
+
+        {% if include.discord != null %}
+        <div class="link">
+            <img src="{{ site.baseurl}}/img/discord.svg" alt="Discord">{{ include.discord }}
+        </div>
+        {% endif %}
+    </div>
+</div>
