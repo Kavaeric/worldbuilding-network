@@ -10,19 +10,19 @@
     <div class="links">
         {% if include.github != null %}
         <a href="https://github.com/{{ include.github | downcase }}" class="link">
-            <img src="{{ site.baseurl}}/img/github.svg" alt="GitHub">{{ include.github }}
+            <img src="{{ site.baseurl}}/img/github.svg" alt="GitHub"><span>{{ include.github }}</span>
         </a>
         {% endif %}
 
         {% if include.reddit != null %}
         <a href="https://reddit.com/u/{{ include.reddit | downcase }}" class="link">
-            <img src="{{ site.baseurl}}/img/reddit.svg" alt="Reddit">{{ include.reddit }}
+            <img src="{{ site.baseurl}}/img/reddit.svg" alt="Reddit"><span>{{ include.reddit }}</span>
         </a>
         {% endif %}
 
         {% if include.discord != null %}
-        <div class="link">
-            <img src="{{ site.baseurl}}/img/discord.svg" alt="Discord">{{ include.discord }}
+        <div class="link discord">
+            <img src="{{ site.baseurl}}/img/discord.svg"><span>{{ include.discord }}</span>
         </div>
         {% endif %}
     </div>

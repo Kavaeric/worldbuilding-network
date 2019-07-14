@@ -13,12 +13,23 @@
 <body>
     {% include navbar.html %}
     <div id="Layout">
-        <!-- Pick a good sidebar image! -->
-        {% if page.category contains "Kaztron" %}
-        <div id="SidebarImage" style="background-image: url('{{ site.baseurl }}/img/Kaztron.png');"></div>
+        {% comment %}<!-- Pick a good sidebar image! Iterates through the following: 
+            1. A file named image.jpg in the main directory 
+            2. Kaztron portrait 
+            3. A JPG named after the page's category 
+            4. Placeholder image -->{% endcomment %}
+        {% capture page_image %}{% file_exists {{page.dir}}/image.jpg %}{% endcapture %}
+        {% capture category_image %}{% file_exists {{ site.baseurl }}/img/{{ page.category }}.jpg %}{% endcapture %}
+        {% if page_image == true %}
+        <img id="SidebarImage" src="image.jpg">
+        {% elsif page.category contains "Kaztron" %}
+        <img id="SidebarImage" src="{{ site.baseurl }}/img/Kaztron.jpg">
+        {% elsif category_image == true %}
+        <img id="SidebarImage" src="{{ site.baseurl }}/img/{{ page.category }}.jpg">
         {% else %}
-        <div id="SidebarImage" style="background-image: url('{{ site.baseurl }}/img/{{ page.category }}.png');"></div>
+        <img id="SidebarImage" src="{{ site.baseurl }}/img/placeholder_shield.jpg">
         {% endif %}
+        
         <div id="Sidebar">
             {% include sidebar.html %}
         </div>

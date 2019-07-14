@@ -9,3 +9,12 @@ function showMenu() {
         linkMenu.className = "hidemenu";
     }
 } 
+
+function showSidebar() {
+    var sidebarList = document.getElementById("SidebarList");
+    if (sidebarList.className == "hidemenu") {
+        sidebarList.className = "showmenu";
+    } else {
+        sidebarList.className = "hidemenu";
+    }
+} 

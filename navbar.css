@@ -1,5 +1,7 @@
 /* navbar.css */
 
+/* Same thing as style.css, design for mobile first and then add media queries for tablets and desktops */
+
 #NavBar {
     width: 100%;
     min-height: 3em;

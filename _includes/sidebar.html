@@ -1,9 +1,9 @@
-<!-- Note down the category of the page you are on 
-     This allows the sidebar include to generate different sidebars depending on the page's category -->
+{% comment %}<!-- Note down the category of the page you are on 
+     This allows the sidebar include to generate different sidebars depending on the page's category -->{% endcomment %}
 {% assign currentCat = page.category %}
 
-<!-- Create an array of all the subcategories, and remove duplicates. We'll loop through all the pages,
-     list them all out, then seperate them with a space -->
+{% comment %}<!-- Create an array of all the subcategories, and remove duplicates. We'll loop through all the pages,
+     list them all out, then seperate them with a space -->{% endcomment %}
 {% capture pages_subcategories %}
     {% for page in site.pages %}
         {% if page.subcategory != null and page.category == currentCat %}
@@ -11,14 +11,15 @@
         {% endif %}
     {% endfor %}
 {% endcapture %}
-<!-- The Split filter will allow us to split the string into an array. An extra space will be generated
+{% comment %}<!-- The Split filter will allow us to split the string into an array. An extra space will be generated
      at the end, so we use rstrip to remove it. -->
-<!-- The Uniq filter will remove any duplicates -->
+<!-- The Uniq filter will remove any duplicates -->{% endcomment %}
 {% assign subcategory_array = pages_subcategories | rstrip | split: " " | uniq %}
 
-<!-- Generate the navigation list of all the pages that share the same category as the current page.
-     Also iterate through all the subcategories available and create headers for them -->
-<ul>
+{% comment %}<!-- Generate the navigation list of all the pages that share the same category as the current page.
+     Also iterate through all the subcategories available and create headers for them -->{% endcomment %}
+<a href="javascript:void(0)" id="SidebarButton" onclick="showSidebar()">&#9776;&ensp;{{ page.title }}</a>
+<ul id="SidebarList" class="hidemenu">
     {% for article in site.pages %}
     {% if article.subcategory == null and article.category == currentCat %}
         {% if article.url == page.url %}

@@ -19,10 +19,12 @@
     --cl-b20: rgba(0, 0, 0, .2);
 }
 
-body {
+html, body {
     margin: 0;
     padding: 0;
+}
 
+body {
     font-family: "IBM Plex Sans", sans-serif;
     font-weight: 400;
     font-size: 14px;
@@ -59,51 +61,93 @@ p {
     margin: 1em 0;
 }
 
-code {
+pre {
+    width: 100%;
+    box-sizing: border-box;
+    display: inline-block;
+    margin: 0;
+    padding: 1em;
+    border: 1px solid var(--cl-b20);
+
+    font-size: 1em;
     font-family: "IBM Plex Mono", monospace;
+    white-space: pre-wrap;
+
+    overflow: auto;
 }
 
 #HomeLayout,
 #Layout {
     max-width: 70em;
-    width: 90%;
-    margin: 2em auto;
 }
 
 #Layout {
     display: grid;
-    grid-template-columns: 15em auto;
-    grid-template-rows: 15em auto;
+    grid-template-columns: 6em auto;
+    grid-template-rows: auto auto;
     grid-template-areas:
-        "image content"
-        "sidebar content";
-    grid-column-gap: 1em;
-    justify-items: stretch;
+        "image sidebar"
+        "content content";
+    grid-row-gap: .5em;
 }
 
-#Layout > div,
-#HomeLayout > div {
+#Layout > *,
+#HomeLayout > * {
     box-sizing: border-box;
-    border: 1px solid var(--cl-b20);
     background-color: #fff;
 }
 
 #SidebarImage {
     grid-area: image;
-    display: block;
-    height: 15em;
-    width: 15em;
+    width: 100%;
+}
 
-    background-color: var(--cl-grey);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+/* Tablets and larger */
+@media screen and (min-width: 768px) {
+    #HomeLayout,
+    #Layout {
+        padding: 0 1em;
+    }
+    #Layout {
+        grid-template-columns: 11em auto;
+        grid-template-rows: 11em auto;
+        grid-template-areas:
+        "image content"
+        "sidebar content";
+        margin: 2em auto;
+        grid-column-gap: .5em;
+    }
+
+    #Layout > * ,
+    #HomeLayout > * {
+        border: 1px solid var(--cl-b20);
+    }
+    
+    #SidebarImage {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+}
+
+/* Desktop and larger */
+@media screen and (min-width: 1024px) {
+    #Layout {
+        grid-template-columns: 15em auto;
+        grid-template-rows: 15em auto;
+        grid-column-gap: 1em;
+    }
 }
 
 #Sidebar {
     grid-area: sidebar;
     display: flex;
     flex-direction: column;
+}
+
+#SidebarButton {
+    padding: .4em .6em;
+    font-size: 1.2em;
 }
 
 #Sidebar ul {
@@ -115,13 +159,13 @@ code {
 #Sidebar .firstlevel,
 #Sidebar .subcatHeader,
 #Sidebar .secondlevel {
-    padding: .4em .6em;
+    padding: .2em .3em;
     display: block;
 }
 
 #Sidebar .subcatHeader {
-    margin-top: .8em;
-    text-align: center;
+    margin-top: .2em;
+    font-size: .8em;
     border-bottom: 1px solid var(--cl-b10);
 }
 
@@ -140,18 +184,44 @@ code {
     background-color: var(--cl-red);
 }
 
-#Content {
-    grid-area: content;
-    padding: 1.5em;
+/* Hide and show the list depending on the classes given in the script */
+#Sidebar ul.hidemenu {
+    display: none;
+}
+#Sidebar ul.showmenu {
+    display: block;
 }
 
-code {
-    display: block;
-    width: 100%;
+/* Tablets and larger, the sidebar will be persistently visible, so no hiding is needed */
+@media screen and (min-width: 768px) {
+    /* We don't need the button anymore */
+    #SidebarButton {
+        display: none;
+    }
+
+    /* Remove the show/hide functionality of the button */
+    #Sidebar ul.showmenu,
+    #Sidebar ul.hidemenu {
+        display: block;
+    }
+
+    #Sidebar .firstlevel,
+    #Sidebar .subcatHeader,
+    #Sidebar .secondlevel {
+        padding: .4em .6em;
+    }
+
+    #Sidebar .subcatHeader {
+        margin-top: .4em;
+        font-size: 1em;
+        border-bottom: 1px solid var(--cl-b10);
+    }    
+}
+
+#Content {
+    grid-area: content;
     box-sizing: border-box;
-    margin: 1em 0;
-    border: 1px solid var(--cl-b20);
-    padding: .5em;
+    padding: 1.5em;
 }
 
 code.highlighter-rouge { /* Inline code */
@@ -159,6 +229,7 @@ code.highlighter-rouge { /* Inline code */
     border: none;
     padding: 0;
     background-color: var(--cl-b5);
+    font-size: 1em;
 }
 
 /* Notices: Tips, warnings, notes */
@@ -182,7 +253,7 @@ p.notice.tip {
     background: rgba(10, 127, 185, .2);
 }
 
-/* Contributors/developers boxes */
+/* Contributors/developers credit boxes */
 div.team {
     width: 100%;
     box-sizing: border-box;
@@ -209,6 +280,7 @@ div.team .profileImg {
     width: 100%;
 }
 
+/* Tagline contains name and role */
 div.team .tagline {
     grid-area: tagline;
     font-size: 1em;
@@ -226,12 +298,12 @@ div.team .links {
 
 div.team .links .link {
     display: flex;
+    box-sizing: border-box;
     flex-direction: row;
     align-items: center;
     
     margin-right: 1em;
     padding: .5em;
-    padding-right: .7em;
 
     font-size: .8em;
     text-decoration: none;
@@ -249,19 +321,31 @@ div.team.developer .links .link:hover {
 div.team .links .link img {
     display: block;
     height: 1.2em;
-    margin-right: .5em;
 }
 
-/* Developer team member distinguisher */
-div.team.developer {
-    grid-template-columns: 4em auto;
-    grid-template-rows: 2.5em 1.5em;
+div.team .links .link span {
+    margin-left: .4em;
+}
+div.team .links .link:not(.discord) span {
+    display: none;
 }
 
-div.team.developer .tagline {
-    font-size: 1.8em;
-}
+@media screen and (min-width: 768px) {
+    /* Developer team member distinguisher */
+    div.team.developer {
+        grid-template-columns: 4em auto;
+        grid-template-rows: 2.5em 1.5em;
+    }
 
-div.team.developer .links .link {
-    background: var(--cl-grey);
+    div.team.developer .tagline {
+        font-size: 1.8em;
+    }
+
+    div.team.developer .links .link {
+        background: var(--cl-grey);
+    }
+
+    div.team .links .link:not(.discord) span {
+        display: initial;
+    }
 }
