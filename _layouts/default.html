@@ -31,7 +31,9 @@
 
         {% if page.category contains "Kaztron" %}
         <img id="SidebarImage" src="{{ site.baseurl }}/img/Kaztron.jpg">
-        {% elsif category_image == true %}
+        {% else %}
+        <img id="SidebarImage" src="{{ site.baseurl }}/img/placeholder_shield.jpg">
+        {% endif %}
         
         <div id="Sidebar">
             {% include sidebar.html %}
