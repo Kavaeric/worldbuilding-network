@@ -1,0 +1,4 @@
+<div class="imageframe">
+    <img src="{{ site.baseurl }}/img/{{ include.file }}"  alt="{{ include.alt }}">
+    <span>{{ include.caption | markdownify | remove: '<p>' | remove: '</p>' }}</span>
+</div>

@@ -26,6 +26,3 @@ exclude:
 
 table_of_contents:
     dirs: [kaztron]
-
-plugins:
-  - file_exists

@@ -1,8 +1,8 @@
 ---
 layout: default
-title: Dice
-category: Kaztron21
-subcategory: Commands
+title: "Dice"
+category: "Kaztron21"
+subcategory: "Commands"
 summary: "The Dice cog implements various dice rolls and other randomness-based functions."
 last_updated: 21 February 2018
 ---

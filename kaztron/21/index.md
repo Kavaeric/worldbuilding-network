@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Kaztron
-category: Kaztron21
+title: "Kaztron"
+category: "Kaztron21"
 ---
 
 KazTron is the /r/worldbuilding Discord server's resident helper bot! It mostly helps the moderators manage the community and run features like the World Spotlight, with a few automation features that happen behind the scenes, and a few commands of use to our members.

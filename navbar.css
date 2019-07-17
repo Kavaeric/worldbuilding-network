@@ -88,7 +88,7 @@ is applied to the #NavLinks element */
 }
 
 /* Tablet and larger */
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 768px) {
     /* Reset the NavBar positioning to the middle */
     #NavBar {
         height: 3em;
